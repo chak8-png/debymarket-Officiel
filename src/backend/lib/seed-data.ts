@@ -16,6 +16,7 @@ const PHOTO_EXT: Record<string, "jpg" | "svg"> = {
   "beaute-cosmetique": "jpg",
   "maillot-de-bain": "jpg",
   "chaussure": "jpg",
+  "chaussure-homme": "jpg",
   "electroniques": "jpg",
   "petit-electromenager": "jpg",
   "power-bank": "svg",
@@ -387,5 +388,23 @@ export const PRODUCTS: Product[] = [
   p(86, "preservatifs-retardants-x10", "Préservatifs retardants (boîte de 10)", 4900, 21, "🛡️", {
     description: "Lubrifiant à effet retardant doux, testés électroniquement.",
     rating: 5,
+  }),
+
+  // ══════════════════════════════════════════════════════════════════
+  // HOMME > Chaussure
+  // ══════════════════════════════════════════════════════════════════
+  p(87, "mocassins-cuir-homme", "Mocassins en cuir homme", 25000, 22, "👞", {
+    description: "Cuir véritable souple, semelle cousue main — habillé ou décontracté.",
+    rating: 5,
+  }),
+  p(88, "baskets-urbaines-homme", "Baskets urbaines homme", 20000, 22, "👟", {
+    description: "Baskets confortables à semelle épaisse amortissante, esprit streetwear.",
+  }),
+  p(89, "derbies-cuir-homme", "Derbies en cuir homme", 30000, 22, "👞", {
+    description: "Derbies élégantes en cuir pleine fleur — bureau, cérémonies, grandes occasions.",
+    rating: 5,
+  }),
+  p(90, "sandales-cuir-homme", "Sandales en cuir homme", 12000, 22, "🩴", {
+    description: "Sandales en cuir robuste, brides ajustables, confort au quotidien.",
   }),
 ];

@@ -82,6 +82,12 @@ async function ensureTables(): Promise<void> {
       unit_price integer NOT NULL
     )
   `);
+  await db.execute(sql`
+    CREATE TABLE IF NOT EXISTS settings (
+      key text PRIMARY KEY,
+      value text NOT NULL
+    )
+  `);
 }
 
 /**

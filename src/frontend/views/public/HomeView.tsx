@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { fetchProducts } from "@/backend/lib/products";
+import { HOME_IMAGE_KEYS, getSettings } from "@/backend/lib/settings";
 import {
   DELIVERY_TIME,
   DELIVERY_AREA,
@@ -20,24 +21,28 @@ const IMG = {
 
 const UNIVERS = [
   {
+    slug: "homme", // sert de clé pour la personnalisation d'image (dashboard)
     name: "Homme",
     href: "/categories/homme",
     desc: "Chemises, pantalons, costumes & vestes.",
     img: IMG.mode,
   },
   {
+    slug: "femme",
     name: "Femme",
     href: "/categories/femme",
     desc: "Sacs, beauté, maillots de bain & chaussures.",
     img: IMG.femme,
   },
   {
+    slug: "electronique-electromenager",
     name: "Électronique & Électroménager",
     href: "/categories/electronique-electromenager",
     desc: "High-tech, audio & équipement de la maison.",
     img: IMG.electro,
   },
   {
+    slug: "produit-erotique",
     name: "Produit érotique",
     href: "/categories/produit-erotique",
     desc: "Espace adulte — commandes en emballage discret.",
@@ -70,7 +75,19 @@ const TRUST = [
 ];
 
 export default async function HomeView() {
-  const featured = await fetchProducts({ featured: true, limit: 8 });
+  const [featured, homeImages] = await Promise.all([
+    fetchProducts({ featured: true, limit: 8 }),
+    // Images d'accueil personnalisées via le dashboard (clé absente = défaut)
+    getSettings(HOME_IMAGE_KEYS),
+  ]);
+
+  // Grande image principale : personnalisée ou image par défaut
+  const heroImage = homeImages["home.hero"] ?? IMG.hero;
+  // Cartes univers : idem, carte par carte (clé = slug de l'univers)
+  const universCards = UNIVERS.map((u) => ({
+    ...u,
+    img: homeImages[`home.card.${u.slug}`] ?? u.img,
+  }));
 
   return (
     <div>
@@ -121,7 +138,7 @@ export default async function HomeView() {
             </span>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={IMG.hero}
+              src={heroImage}
               alt="Shopping mode et lifestyle"
               className="h-[420px] w-full rounded-[2rem] object-cover sm:h-[520px]"
             />
@@ -170,7 +187,7 @@ export default async function HomeView() {
         </div>
 
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {UNIVERS.map((u) => (
+          {universCards.map((u) => (
             <Link
               key={u.name}
               href={u.href}

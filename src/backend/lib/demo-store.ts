@@ -12,8 +12,7 @@ import type { Product } from "../db/schema";
 
 const FILE = join(tmpdir(), "debymarket-demo-store.json");
 
-export interface DemoOrder {
-  id: number;
+export interface DemoOrder {  id: number;
   reference: string;
   customerName: string;
   phone: string;
@@ -41,6 +40,8 @@ interface DemoStore {
   catalog?: Product[];
   /** Prochain id produit disponible (création). */
   nextProductId?: number;
+  /** Réglages du site (ex : images d'accueil personnalisées) : clé → valeur. */
+  settings?: Record<string, string>;
 }
 
 const EMPTY: DemoStore = { orders: [], nextId: 1, stock: {} };
@@ -55,6 +56,7 @@ export function loadDemoStore(): DemoStore {
       stock: parsed.stock ?? {},
       catalog: parsed.catalog,
       nextProductId: parsed.nextProductId,
+      settings: parsed.settings,
     };
   } catch {
     return { ...EMPTY, orders: [], stock: {} };
@@ -179,4 +181,18 @@ export function nextDemoProductId(seed: Product[]): number {
     0
   );
   return Math.max(store.nextProductId ?? 0, maxCatalog + 1, 1);
+}
+
+/** Lit un réglage du site (mode démo). */
+export function getDemoSetting(key: string): string | null {
+  return loadDemoStore().settings?.[key] ?? null;
+}
+
+/** Enregistre (ou supprime si value = null) un réglage du site. */
+export function setDemoSetting(key: string, value: string | null): void {
+  const store = loadDemoStore();
+  const settings = { ...(store.settings ?? {}) };
+  if (value === null) delete settings[key];
+  else settings[key] = value;
+  saveDemoStore({ ...store, settings });
 }

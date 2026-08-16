@@ -77,7 +77,14 @@ export default async function DashboardView() {
         <h1 className="font-display text-3xl font-semibold tracking-tight">
           📊 Tableau de bord
         </h1>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
+          <Link
+            href="/admin/images"
+            className="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-4 py-2 text-sm font-bold text-white shadow-sm transition hover:bg-brand-700"
+            title="Changer la grande photo d'accueil et les cartes des univers"
+          >
+            🖼️ Images de l'accueil
+          </Link>
           <Link
             href="/"
             className="text-sm font-semibold text-brand-600 hover:underline"
