@@ -68,6 +68,17 @@ export const orderItems = pgTable("order_items", {
   unitPrice: integer("unit_price").notNull(), // snapshot du prix au moment de l'achat
 });
 
+// ---------------------------------------------------------------------------
+// Réglages du site — paires clé/valeur (ex : images d'accueil personnalisées
+// depuis le dashboard). Stocké en base → fonctionne aussi en serverless.
+// ---------------------------------------------------------------------------
+export const settings = pgTable("settings", {
+  key: text("key").primaryKey(),
+  value: text("value").notNull(),
+});
+
+export type Setting = typeof settings.$inferSelect;
+
 export type Category = typeof categories.$inferSelect;
 export type Product = typeof products.$inferSelect;
 export type Order = typeof orders.$inferSelect;

@@ -6,7 +6,7 @@ Design éditorial : fond crème, texte encre, accent framboise, titres **Fraunce
 - 🚚 **Livraison en 24h** sur Abidjan (forfait 1 000 FCFA)
 - 💵 **Paiement à la livraison** uniquement (aucun paiement en ligne)
 - 🗂️ Catalogue 3 niveaux : Mode (Homme/Femme) · Électronique & Électroménager
-- 📊 Dashboard admin : commandes, stock par catégorie modifiable, **export Excel des transactions**
+- 📊 Dashboard admin : commandes, produits & stock, **images d'accueil personnalisables** (`/admin/images`), **export Excel des transactions**
 
 ## 🚀 Démarrage rapide
 
@@ -16,14 +16,14 @@ npm run dev
 ```
 
 Puis ouvrir **http://localhost:3000** — le site fonctionne immédiatement en
-**mode démo** (72 articles en mémoire, aucune base requise).
+**mode démo** (76 articles en mémoire, aucune base requise).
 
 ### Avec une vraie base PostgreSQL (optionnel)
 
 ```bash
 cp .env.example .env.local       # renseigner DATABASE_URL
 npx drizzle-kit push             # crée les tables
-curl -X POST http://localhost:3000/api/seed   # insère les 72 articles + catégories
+curl -X POST http://localhost:3000/api/seed   # insère les 76 articles + catégories
 npm run dev
 ```
 
@@ -102,4 +102,3 @@ npm run start        # serveur de production
 npm run db:push      # pousser le schéma Drizzle
 npm run db:studio    # explorateur visuel de la DB
 ```
-"# debymarket-Officiel"  

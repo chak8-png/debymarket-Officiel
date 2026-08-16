@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 // Route : /categories/[slug] — aiguillage uniquement, la vue est dans frontend/views.
 import type { Metadata } from "next";
 import { getCategoryBySlug } from "@/backend/lib/categories";

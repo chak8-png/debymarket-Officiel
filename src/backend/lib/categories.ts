@@ -20,6 +20,7 @@ export const CATEGORY_LIST: Category[] = [
   row(3, "chemise-polo", "Chemise & Polo", 1, "👔", 2, 1),
   row(4, "culotte-pantalon", "Culotte & Pantalon", 1, "👖", 2, 2),
   row(5, "blazer-costume", "Blazer & Costume", 1, "🤵", 2, 3),
+  row(22, "chaussure-homme", "Chaussure", 1, "👞", 2, 4),
 
   // ── Univers 2 : Femme ────────────────────────────────────────────────
   row(6, "femme", "Femme", 0, "👗", null, 2),
